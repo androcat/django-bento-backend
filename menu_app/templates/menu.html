@@ -9,8 +9,12 @@
   <body>
     <main style="text-align: center">
       <h1>Menu</h1>
+      <h2>Appetizers</h2>
+      <ul>
+        <!-- {{ appetizers.name }} -->
+      </ul>
       <ul style="list-style: none; width: 50%; margin: 0 auto; padding: 0">
-        {% for item in data %}
+        {% for item in appetizers %}
         <a
           style="text-decoration: none"
           href="http://127.0.0.1:8000/menu/{{ forloop.counter0 }}"
@@ -24,7 +28,39 @@
         </a>
         {% endfor %}
       </ul>
-      <a href="http://127.0.0.1:8000/home">~ Back to Home</a>
+      <h2>Main Courses</h2>
+      <ul style="list-style: none; width: 50%; margin: 0 auto; padding: 0">
+        {% for item in mains %}
+        <a
+          style="text-decoration: none"
+          href="http://127.0.0.1:8000/menu/{{ forloop.counter0 }}"
+        >
+          <li
+            style="width: 100%; display: flex; justify-content: space-between"
+          >
+            <p>{{ item.name }}</p>
+            <p>{{ item.price }}</p>
+          </li>
+        </a>
+        {% endfor %}
+      </ul>
+      <h2>Desserts</h2>
+      <ul style="list-style: none; width: 50%; margin: 0 auto; padding: 0">
+        {% for item in desserts %}
+        <a
+          style="text-decoration: none"
+          href="http://127.0.0.1:8000/menu/{{ forloop.counter0 }}"
+        >
+          <li
+            style="width: 100%; display: flex; justify-content: space-between"
+          >
+            <p>{{ item.name }}</p>
+            <p>{{ item.price }}</p>
+          </li>
+        </a>
+        {% endfor %}
+      </ul>
+      <a href="/home">~ Back to Home</a>
     </main>
   </body>
 </html>

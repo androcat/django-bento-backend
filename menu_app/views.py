@@ -118,7 +118,7 @@ menu_list = [
       }
     ]
 # Create your views here.
-def home_view(request, *args, **kwargs):
+def home_view(request):
     return render(request, 'homepage.html') #{'data': data})
 
 def menu_view(request):
@@ -161,3 +161,7 @@ def seed(request):
 
     # return render(request, '')
     return render(request, 'menu.html', {'appetizers': appetizers2, 'mains': mains, 'desserts': desserts}) #HttpResponse('<h1>Check terminal :^)</h1>')
+
+def appetizers_index(request):
+    appetizers = Appetizer.objects.all()
+    return render(request, 'appetizers.html', {'appetizers': appetizers})

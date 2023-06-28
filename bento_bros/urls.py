@@ -21,6 +21,9 @@ from menu_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.home_view, name='home'),
-    path('menu/', views.menu_view, name='menu'),
-    path('menu/<int:index>', views.menu_item_view, name='item')
+    path('menu/', views.seed, name='menu'),
+    path('appetizer_item/<int:id>', views.appetizer_item_view, name="appetizer-item"),
+    path('main_item/<int:id>', views.main_item_view, name="main-item"),
+    path('dessert_item/<int:id>', views.dessert_item_view, name="dessert-item"),
+    # path('seed/', views.seed)
 ]

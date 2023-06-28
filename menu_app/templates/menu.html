@@ -17,7 +17,7 @@
         {% for item in appetizers %}
         <a
           style="text-decoration: none"
-          href="http://127.0.0.1:8000/menu/{{ forloop.counter0 }}"
+          href="http://127.0.0.1:8000/appetizer_item/{{ item.id }}"
         >
           <li
             style="width: 100%; display: flex; justify-content: space-between"
@@ -33,7 +33,7 @@
         {% for item in mains %}
         <a
           style="text-decoration: none"
-          href="http://127.0.0.1:8000/menu/{{ forloop.counter0 }}"
+          href="http://127.0.0.1:8000/main_item/{{ item.id }}"
         >
           <li
             style="width: 100%; display: flex; justify-content: space-between"
@@ -49,7 +49,7 @@
         {% for item in desserts %}
         <a
           style="text-decoration: none"
-          href="http://127.0.0.1:8000/menu/{{ forloop.counter0 }}"
+          href="http://127.0.0.1:8000/dessert_item/{{ item.id }}"
         >
           <li
             style="width: 100%; display: flex; justify-content: space-between"

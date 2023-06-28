@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from menu_app.models import Appetizer, MainCourse, Dessert
 
 from django.http import HttpResponse
@@ -121,24 +121,21 @@ menu_list = [
 def home_view(request, *args, **kwargs):
     return render(request, 'homepage.html') #{'data': data})
 
-def menu_view(request):
-    return render(request, 'menu.html', {'data': menu_list})
+# def menu_view(request):
+#     return render(request, 'menu.html', {'data': menu_list})
 
-def menu_item_view(request, index):
-    menu_item = menu_list[index]
-    return render(request, 'menu_item.html', {'data_item': menu_item})
+# def menu_item_view(request, index):
+#     menu_item = menu_list[index]
+#     return render(request, 'menu_item.html', {'data_item': menu_item})
 
 def seed(request):
-    # books = [
-    #   Book(title=”Book 1 of 3”, author=6),
-    #   Book(title=”Book 2 of 3”, author=3),
-    #   Book(title=”Book 3 of 3”, author=2)
-    # ]
     appetizers = []
     mains = []
     desserts = []
 
     Appetizer.objects.all().delete()
+    MainCourse.objects.all().delete()
+    Dessert.objects.all().delete()
 
     for food_obj in menu_list:
       if food_obj["type"] == 'appetizer':
@@ -147,9 +144,6 @@ def seed(request):
         mains.append(MainCourse(name=food_obj["name"], japanese_name=food_obj["japanese_name"], price=food_obj["price"], description=food_obj["description"]))
       elif food_obj["type"] == 'dessert':
         desserts.append(Dessert(name=food_obj["name"], japanese_name=food_obj["japanese_name"], price=food_obj["price"], description=food_obj["description"]))
-    
-
-
 
     print(appetizers)
     Appetizer.objects.bulk_create(appetizers)
@@ -161,3 +155,15 @@ def seed(request):
 
     # return render(request, '')
     return render(request, 'menu.html', {'appetizers': appetizers2, 'mains': mains, 'desserts': desserts}) #HttpResponse('<h1>Check terminal :^)</h1>')
+
+def appetizer_item_view(request, id):
+    obj = get_object_or_404(Appetizer, id=id)
+    return render(request, 'menu_item.html', {'obj': obj})
+
+def main_item_view(request, id):
+    obj = get_object_or_404(MainCourse, id=id)
+    return render(request, 'menu_item.html', {'obj': obj})
+
+def dessert_item_view(request, id):
+    obj = get_object_or_404(Dessert, id=id)
+    return render(request, 'menu_item.html', {'obj': obj})

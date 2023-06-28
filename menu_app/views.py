@@ -118,7 +118,7 @@ menu_list = [
       }
     ]
 # Create your views here.
-def home_view(request, *args, **kwargs):
+def home_view(request):
     return render(request, 'homepage.html') #{'data': data})
 
 # def menu_view(request):
